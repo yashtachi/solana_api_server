@@ -1,0 +1,5 @@
+build:
+  commands:
+    - cargo build --release
+run:
+  command: ./target/release/solana_api_server

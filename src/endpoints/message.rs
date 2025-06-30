@@ -18,7 +18,7 @@ pub async fn sign_message(Json(req): Json<SignRequest>) -> Json<ApiResponse<Stri
         Err(_) => return Json(ApiResponse::error("Invalid base58 secret_key")),
     };
 
-    let keypair = match Keypair::try_from(secret_bytes.as_slice()) {
+    let keypair = match Keypair::from_bytes(&secret_bytes) {
         Ok(kp) => kp,
         Err(_) => return Json(ApiResponse::error("Failed to parse secret key")),
     };
