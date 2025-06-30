@@ -12,9 +12,26 @@ pub struct ApiResponse<T> {
 
 impl<T> ApiResponse<T> {
     pub fn ok(data: T) -> Self {
-        ApiResponse { success: true, data: Some(data), error: None }
+        ApiResponse {
+            success: true,
+            data: Some(data),
+            error: None,
+        }
     }
+
+    pub fn error(msg: impl Into<String>) -> Self {
+        ApiResponse {
+            success: false,
+            data: None,
+            error: Some(msg.into()),
+        }
+    }
+
     pub fn err(msg: impl Into<String>) -> Self {
-        ApiResponse { success: false, data: None, error: Some(msg.into()) }
+        ApiResponse {
+            success: false,
+            data: None,
+            error: Some(msg.into()),
+        }
     }
 }
